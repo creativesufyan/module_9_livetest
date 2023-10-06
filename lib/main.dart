@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Product {
-  String name;
-  double unitPrice;
-  List<String> availableSizes;
-
-  Product({required this.name, required this.unitPrice, required this.availableSizes});
-}
-
-List<Product> products = [
-  Product(name: 'Product 1', unitPrice: 10.0, availableSizes: ['S','M', 'L', 'XL', 'XXL', 'XXXL']),
-];
+List<String> products = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 
 class ShoppingCart extends StatefulWidget {
   const ShoppingCart({Key? key}) : super(key: key);
@@ -21,7 +11,6 @@ class ShoppingCart extends StatefulWidget {
 
 class _ShoppingCartState extends State<ShoppingCart> {
   String selectedSize = '';
-  int selectedProductIndex = 0;
 
   void showSnackbar(BuildContext context, String size) {
     final snackBar = SnackBar(
@@ -44,9 +33,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
             childAspectRatio: 1.5, // Aspect ratio of each item (width / height)
           ),
           shrinkWrap: true,
-          itemCount: products[selectedProductIndex].availableSizes.length,
+          itemCount: products.length,
           itemBuilder: (context, index) {
-            String size = products[selectedProductIndex].availableSizes[index];
+            String size = products[index];
             return GestureDetector(
               onTap: () {
                 setState(() {
